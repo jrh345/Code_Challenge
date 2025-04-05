@@ -60,6 +60,12 @@ def guess_logic(user_letter, secret_word, word_progress):
         return 0
     
     if user_letter in secret_word or user_letter not in letters_guessed:
+        if user_letter not in secret_word:
+            print("Try again")
+            letters_guessed.append(user_letter)
+            print(f"previously guessed letters\n{letters_guessed}")
+            print(word_progress)
+            return 1
         for i in range(len(secret_word)):
             if secret_word[i] == user_letter:
                 word_progress[i] = user_letter
@@ -72,7 +78,7 @@ def guess_logic(user_letter, secret_word, word_progress):
     print(f"previously guessed letters\n{letters_guessed}")
     print(word_progress)
     
-    return 1
+    return 0
 
 
 def mainloop():
@@ -87,7 +93,7 @@ def mainloop():
         secret_word = get_random_word()
         word_progress = ["_ " for _ in range(len(secret_word))]
 
-        while("_ " in word_progress):
+        while("_ " in word_progress and guess_count < 7):
             #display the length of the mystery word using '_' eg: apple = _ _ _ _ _
             #prompt user to guess a letter
             #fill in the correct letter if the user picks a correct letter eg apple: 'e' = _ _ _ _ e eg: 'p' = _ p p _ _
@@ -101,11 +107,14 @@ def mainloop():
             guess = input(f"guess a letter for a {len(secret_word)} letter word:").lower()
             guess_count += guess_logic(guess,secret_word, word_progress)
 
-        formatted_score = f"{(len(secret_word) / guess_count) * 100:.2f}"  # Format to 2 decimal places
-        with open("Code_Challenge/hangman_scores.txt", "a") as game_history:
-            game_history.write(f"{secret_word}: score: {formatted_score} total guesses: {guess_count}\n")
+        if guess_count == 7:
+            print(f"Sorry...the word was {secret_word}")
+        else:
+            formatted_score = f"{(len(secret_word) / guess_count) * 100:.2f}"  # Format to 2 decimal places
+            with open("Code_Challenge/hangman_scores.txt", "a") as game_history:
+                game_history.write(f"{secret_word}: score: {formatted_score} total guesses: {guess_count}\n")
 
-        print(f"You did it! Your final score for {secret_word} was {formatted_score}!")
+            print(f"You did it! Your final score for {secret_word} was {formatted_score}!")
         play_again = input("Do you want to play again?: yes/no\n")
         if play_again != "yes":
             play_again = False
