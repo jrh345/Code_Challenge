@@ -51,9 +51,10 @@ def get_random_word():
 def guess_logic(user_letter, secret_word, word_progress):
     """Guess individual letters. We are organizing this logic to first
        check that the guess is a single char. within our secret word or at least a new guess.
-       in this version the player recieves a penalty for repeatedly guessing
-       the same letter. Second, to help the player keep track of their guesses
-       we show them a list of their previous guesses just above their word progress."""
+       in this version the player recieves a penalty only for new incorrect guesses.
+       Repeat guesses and multi char inputs do not count against their score.
+       To help the player keep track of their guesses, we show them a list of their previous 
+       guesses just above their word progress."""
     input_string = len(user_letter)
     if input_string > 1:
         print("Only input one letter at a time\n")
@@ -82,10 +83,10 @@ def guess_logic(user_letter, secret_word, word_progress):
 
 
 def mainloop():
-    """This is where the magic happens. The outer while to manage and reset repeated games
+    """This is where the magic happens. The outer while to manage and reset repeated games.
        Inner while takes care of the actual user inputs and progress. To avoid unwanted games
        and a potentially lower score in the player's file, only when the user explicitly states
-       they want to play again will a new word be given."""
+       they want to play again will a new round begin."""
     guess_count = 0
     play_again = True
     
