@@ -29,7 +29,7 @@ This is a Python implementation of a word guessing game. Players attempt to gues
 
 2. **Steps**:
    - Clone or download this repository.
-   - Open a terminal and navigate to the folder containing `hangman.py`. Most likely "Code_Challenge"
+   - Open a terminal and navigate to the folder containing `hangman.py`. Most likely "Downloads"
    - Run the program using the following command:
      ```bash
      python hangman.py
@@ -39,7 +39,7 @@ This is a Python implementation of a word guessing game. Players attempt to gues
      python3 hangman.py
      ```
 
-3. Follow the on-screen instructions to play the game.
+3. Follow the text instructions to play the game.
 
 ## File Structure
 
