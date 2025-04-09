@@ -111,7 +111,7 @@ def mainloop():
         if guess_count == 7:
             print(f"Sorry...the word was {secret_word}")
         else:
-            formatted_score = f"{(len(secret_word) / guess_count) * 100:.2f}"  # Format to 2 decimal places
+            formatted_score = f"{(len(secret_word) / guess_count + 1) * 100:.2f}"  # Format to 2 decimal places
             with open("Code_Challenge/hangman_scores.txt", "a") as game_history:
                 game_history.write(f"{secret_word}: score: {formatted_score} total guesses: {guess_count}\n")
 
